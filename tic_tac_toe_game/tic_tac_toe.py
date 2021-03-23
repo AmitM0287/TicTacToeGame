@@ -38,6 +38,18 @@ def assigned_letter():
         globals()['computer'] = 'X'
 
 
+def who_plays_first():
+    """
+    This function is used to determine who plays first.
+    :return:
+    """
+    random = randrange(0, 2)
+    if random == 0:
+        return globals()['computer']
+    else:
+        return globals()['player']
+
+
 if __name__ == '__main__':
     try:
         print('\nWelcome To Tic Tac Toe Game\n')
@@ -47,7 +59,12 @@ if __name__ == '__main__':
         # Assigned letter to computer & player
         assigned_letter()
         print('\nComputer Plays : ', computer)
-        print('\nPlayer Plays: ', player)
+        print('Player Plays: ', player)
+        # Begin toss to who plays first
+        if who_plays_first() == globals()['computer']:
+            print('\nComputer plays first!')
+        else:
+            print('\nPlayer plays first!')
     except Exception as e:
         print('Oops! Something went wrong! Try again...')
         logger.exception(e)
