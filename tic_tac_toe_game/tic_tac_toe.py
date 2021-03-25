@@ -67,22 +67,124 @@ def handle_turn(player_):
     """
     if player_ == computer:
         print('\nNow ', player_ + "'s turn.")
-        position = randrange(0, 9)
-        while board[position] not in ['_']:
+        position = check_if_computer_can_win()
+        if position == -1:
             position = randrange(0, 9)
-        board[position] = computer
+            while board[position] not in ['_']:
+                position = randrange(0, 9)
+            board[position] = computer
         display_board()
     if player_ == player:
         print('\nNow ', player_ + "'s turn.")
         position = int(input('Choose a position from 1-9 (available): '))
         while position not in [1, 2, 3, 4, 5, 6, 7, 8, 9]:
-            position = int(input('Invalid Input. Choose a position from 1-9: '))
+            position = int(input('Wrong input. Choose a position from 1-9: '))
         position = position - 1
         while board[position] not in ['_']:
             position = int(input('Position is already taken. Choose from available positions: '))
             position = position - 1
         board[position] = player
         display_board()
+
+
+def check_if_computer_can_win():
+    """
+    This function is used to choose that position, for that computer is able to win.
+    :return: None
+    """
+    position = row_wise_checking(computer)
+    if position != -1:
+        board[position] = computer
+    else:
+        position = column_wise_checking(computer)
+    if position != -1:
+        board[position] = computer
+    else:
+        position = diagonal_wise_checking(computer)
+    if position != -1:
+        board[position] = computer
+    else:
+        position = take_corner()
+    if position != -1:
+        board[position] = computer
+    else:
+        return -1
+
+
+def take_corner():
+    """
+
+    :return:
+    """
+    if board[0] == '_':
+        return 0
+    elif board[2] == '_':
+        return 2
+    elif board[6] == '_':
+        return 6
+    elif board[8] == '_':
+        return 8
+    else:
+        return -1
+
+
+def row_wise_checking(player_):
+    """
+    This
+    :return:
+    """
+    if board[0] == board[1] == player_:
+        return 2
+    elif board[1] == board[2] == player_:
+        return 0
+    elif board[3] == board[4] == player_:
+        return 5
+    elif board[4] == board[5] == player_:
+        return 3
+    elif board[6] == board[7] == player_:
+        return 8
+    elif board[7] == board[8] == player_:
+        return 6
+    else:
+        return -1
+
+
+def column_wise_checking(player_):
+    """
+
+    :return:
+    """
+    if board[0] == board[3] == player_:
+        return 6
+    elif board[3] == board[6] == player_:
+        return 0
+    elif board[1] == board[4] == player_:
+        return 7
+    elif board[4] == board[7] == player_:
+        return 1
+    elif board[2] == board[5] == player_:
+        return 8
+    elif board[5] == board[8] == player_:
+        return 2
+    else:
+        return -1
+
+
+def diagonal_wise_checking(player_):
+    """
+
+    :return:
+    """
+    if board[0] == board[4] == player_:
+        return 8
+    elif board[4] == board[8] == player_:
+        return 0
+    elif board[2] == board[4] == player_:
+        return 6
+    elif board[4] == board[6] == player_:
+        return 2
+    else:
+        return -1
 
 
 def flip_player():
@@ -251,3 +353,9 @@ if __name__ == '__main__':
     except Exception as e:
         print('Oops! Something went wrong! Try again...')
         logger.exception(e)
+        play_game()
+        # Game has Ended.
+        if winner == 'X' or winner == 'O':
+            print('\n', winner, ' won the match!')
+        elif winner is None:
+            print("It's a Tie.")
