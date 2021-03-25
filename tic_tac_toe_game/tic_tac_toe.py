@@ -67,7 +67,9 @@ def handle_turn(player_):
     """
     if player_ == computer:
         print('\nNow ', player_ + "'s turn.")
-        position = check_if_computer_can_win()
+        position = block_to_win()
+        if position == -1:
+            position = check_if_computer_can_win()
         if position == -1:
             position = randrange(0, 9)
             while board[position] not in ['_']:
@@ -87,10 +89,30 @@ def handle_turn(player_):
         display_board()
 
 
+def block_to_win():
+    """
+    This function is used to block user to win.
+    :return: If there is no position to block to win then it's return -1.
+    """
+    position = row_wise_checking(player)
+    if position != -1:
+        board[position] = computer
+    else:
+        position = column_wise_checking(player)
+    if position != -1:
+        board[position] = computer
+    else:
+        position = diagonal_wise_checking(player)
+    if position != -1:
+        board[position] = computer
+    else:
+        return -1
+
+
 def check_if_computer_can_win():
     """
     This function is used to choose that position, for that computer is able to win.
-    :return: None
+    :return: If there is no winning position then it's return -1.
     """
     position = row_wise_checking(computer)
     if position != -1:
@@ -113,8 +135,8 @@ def check_if_computer_can_win():
 
 def take_corner():
     """
-
-    :return:
+    This function is used to take the corner position, if it's empty.
+    :return: If corner positions are not available then it's return -1.
     """
     if board[0] == '_':
         return 0
@@ -130,8 +152,9 @@ def take_corner():
 
 def row_wise_checking(player_):
     """
-    This
-    :return:
+    This function is used to check row wise.
+    :param player_: It's accept player as a parameter.
+    :return: If there is not found any row wise match, then it's return -1.
     """
     if board[0] == board[1] == player_:
         return 2
@@ -151,8 +174,9 @@ def row_wise_checking(player_):
 
 def column_wise_checking(player_):
     """
-
-    :return:
+    This function is used to check column wise.
+    :param player_: It's accept player as a parameter.
+    :return: If there is not found any column wise match, then it's return -1.
     """
     if board[0] == board[3] == player_:
         return 6
@@ -172,8 +196,9 @@ def column_wise_checking(player_):
 
 def diagonal_wise_checking(player_):
     """
-
-    :return:
+    This function is used to check diagonal wise.
+    :param player_: It's accept player as a parameter.
+    :return: If there is not found any column wise match, then it's return -1.
     """
     if board[0] == board[4] == player_:
         return 8
