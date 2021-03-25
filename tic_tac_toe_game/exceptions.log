@@ -1,0 +1,27 @@
+03/24/2021 01:08:35 PM : logging_configuration.logging_config : 
+Traceback (most recent call last):
+  File "D:\Pycharm Workshop\TicTacToeGame\tic_tac_toe_game\tic_tac_toe.py", line 273, in <module>
+    play_game()
+  File "D:\Pycharm Workshop\TicTacToeGame\tic_tac_toe_game\tic_tac_toe.py", line 140, in play_game
+    handle_turn(current_player)
+  File "D:\Pycharm Workshop\TicTacToeGame\tic_tac_toe_game\tic_tac_toe.py", line 77, in handle_turn
+    position = int(input('Choose a position from 1-9 (available): '))
+ValueError: invalid literal for int() with base 10: 'A'
+03/24/2021 01:34:34 PM : logging_configuration.logging_config : 
+Traceback (most recent call last):
+  File "D:\Pycharm Workshop\TicTacToeGame\tic_tac_toe_game\tic_tac_toe.py", line 273, in <module>
+    play_game()
+  File "D:\Pycharm Workshop\TicTacToeGame\tic_tac_toe_game\tic_tac_toe.py", line 140, in play_game
+    handle_turn(current_player)
+  File "D:\Pycharm Workshop\TicTacToeGame\tic_tac_toe_game\tic_tac_toe.py", line 77, in handle_turn
+    position = int(input('Choose a position from 1-9 (available): '))
+ValueError: invalid literal for int() with base 10: 'A'
+03/25/2021 07:28:34 AM : logging_configuration.logging_config : 
+Traceback (most recent call last):
+  File "D:\Pycharm Workshop\TicTacToeGame\tic_tac_toe_game\tic_tac_toe.py", line 273, in <module>
+    play_game()
+  File "D:\Pycharm Workshop\TicTacToeGame\tic_tac_toe_game\tic_tac_toe.py", line 140, in play_game
+    handle_turn(current_player)
+  File "D:\Pycharm Workshop\TicTacToeGame\tic_tac_toe_game\tic_tac_toe.py", line 77, in handle_turn
+    position = int(input('Choose a position from 1-9 (available): '))
+ValueError: invalid literal for int() with base 10: 'A'
